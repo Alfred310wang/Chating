@@ -47,12 +47,12 @@ class TocMachine(GraphMachine):
     def is_going_to_state3(self, event):
         if event.get("message"):
             text = event['message']['text']
-            return text.lower() == 'go to state3'
+            return text.lower() == 'riddle'
         return False
     def is_going_to_state3_1(self, event):
         if event.get("message"):
             text = event['message']['text']
-            return text.lower() == 'go to state3_1'
+            return text.lower() == 'library'
         return False
 
 
@@ -76,17 +76,17 @@ class TocMachine(GraphMachine):
     def on_exit_state2(self):
         print('Leaving state2')
     def on_enter_state3(self, event):
-        print("I'm entering state3")
+        print("Leaving state2")
 
         sender_id = event['sender']['id']
-        responese = send_text_message(sender_id, "I'm entering state3")
+        responese = send_text_message(sender_id, "What is the tallest building in the world?")
 #       self.go_back()
 
     def on_enter_state3_1(self, event):
         print("I'm entering state3_1")
 
         sender_id = event['sender']['id']
-        responese = send_text_message(sender_id, "I'm entering state3_1")
+        responese = send_text_message(sender_id, "Yep,cus it has so many stories.")
         self.go_back()
 
     def on_exit_state3_1(self):
